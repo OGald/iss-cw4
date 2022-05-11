@@ -8,7 +8,7 @@
 
 # So that our containers can talk to each other, we need to create a docker network:
 
-docker network create --subnet=192.0.2.0/24 iss2022/g99_n
+docker network create --subnet=192.0.2.0/24 iss2022/solomon_n
 
 ####### DATABASE (MySQL) ###########
 
@@ -17,12 +17,12 @@ docker network create --subnet=192.0.2.0/24 iss2022/g99_n
 # (tag as 0.1, 0.2 as well as latest if you feel this to be essential).
 # After building the MYSQL image from the dockerfile you can use the following run-time command to get started:
 
-docker run -d --net iss2022/g99_n --ip 192.0.2.201 --hostname db.cyber2022.test -e MYSQL_ROOT_PASSWORD="CorrectHorseBatteryStaple" -e MYSQL_DATABASE="iss2022db" --name iss2022_g99-db_c iss2022/g99-db_i 
+docker run -d --net iss2022/solomon_n --ip 192.0.2.201 --hostname db.cyber2022.test -e MYSQL_ROOT_PASSWORD="CorrectHorseBatteryStaple" -e MYSQL_DATABASE="iss2022db" --name iss2022_solomon-db_c iss2022/solomon-db_i 
 
 # After running this command, your mysql container will not be configured with a database.
 # Therefore everytime you start your mysql container you need to run the following command in order to prepare the database:
 
-docker exec -i iss2022_g99-db_c mysql -uroot -pCorrectHorseBatteryStaple < sqlconfig/iss2022db.sql
+docker exec -i iss2022_solomon-db_c mysql -uroot -pCorrectHorseBatteryStaple < sqlconfig/iss2022db.sql
 
 # This will create a pre-configured database which can be used by the web application.
 
@@ -37,7 +37,7 @@ docker exec -i iss2022_g99-db_c mysql -uroot -pCorrectHorseBatteryStaple < sqlco
 # Name your image iss2022/g99-web_i  (but replace g99 with your own group id)
 # After building the NGINX dockerfile you can use the following run-time command to get started:
 
-docker run -d --net iss2022/g99_n --ip 192.0.2.202 --hostname www.cyber2022.test --add-host db.cyber2022.test:192.0.2.201 -p 80:80 --name iss2022_g99-web_c iss2022/g99-web_i
+docker run -d --net iss2022/solomon_n --ip 192.0.2.202 --hostname www.cyber2022.test --add-host db.cyber2022.test:192.0.2.201 -p 80:80 --name iss2022_solomon-web_c iss2022/solomon-web_i
 
 # You should now be able to browse to http://localhost/ to view the web application!
 
