@@ -5,5 +5,5 @@
 sudo make -f /usr/share/selinux/devel/Makefile ../webserver/configfiles/docker-SEweb.pp
 sudo make -f /usr/share/selinux/devel/Makefile ../dbserver/configfiles/docker-SEdb.pp
 
-sudo semodule -i ../webserver/docker-solomon-db.pp
-sudo semodule -i ../webserver/docker-solomon-web.pp
+sudo semodule -i ../dbserver/configFiles/docker-solomon-db.pp
+sudo semodule -i ../webserver/configFiles/docker-solomon-web.pp
