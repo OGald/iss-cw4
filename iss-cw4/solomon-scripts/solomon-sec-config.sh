@@ -5,5 +5,5 @@
 sudo make -f /usr/share/selinux/devel/Makefile ../webserver/configfiles/solomon-SEweb.pp
 sudo make -f /usr/share/selinux/devel/Makefile ../dbserver/configfiles/solomon-SEdb.pp
 
-sudo semodule -i ../dbserver/configFiles/solomon-solomon-db.pp
-sudo semodule -i ../webserver/configFiles/solomon-solomon-web.pp
+sudo semodule -i ../dbserver/configFiles/solomon-SEdb.pp
+sudo semodule -i ../webserver/configFiles/solomon-SEweb.pp
