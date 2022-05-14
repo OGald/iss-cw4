@@ -8,7 +8,8 @@ RUN 	yum install epel-release -y && \
 	nginx \
 	php \
 	php-mysqlnd \
-	php-fpm 
+	php-fpm \
+	selinux-policy-devel
 	
 
 COPY webfiles/ /usr/share/nginx/html
