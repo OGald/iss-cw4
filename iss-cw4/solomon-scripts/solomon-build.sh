@@ -12,7 +12,7 @@ docker build -f Dockerfile --tag iss2022/solomon-db_i .
 # Builds the web image
 cd ..
 cd ../webserver/
-docker build --tag iss2022/solomon-web_i .
+docker build -f Dockerfile --tag iss2022/solomon-web_i .
 
 #
 # _i = Image
