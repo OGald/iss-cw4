@@ -1,6 +1,5 @@
 policy_module(docker-solomon-web,0.1)
 virt_sandbox_domain_template(docker-solomon-web);
-enforcing docker-solomon-web_t;
 require {
     type node_t;
     type mysqld_port_t;
