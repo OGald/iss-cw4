@@ -1,9 +1,7 @@
 #!/bin/bash
 
-./strip-image  -v \
-  -i local/chat-server:latest \
-  -p nmap-ncat \
-  -d Dockerfile \
-  -t local/chat-stripped_i \
-  -t local/chat-stripped_i:22.02.v
-
+./strip-image -i iss2022/g42-db_i:latest \
+	-t iss2022/g42-db_i_stripped:latest \
+	-t iss2022/g42-db_i:1  \
+     	-p nginx  \
+      	-d Dockerfile
