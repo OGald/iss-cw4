@@ -1,6 +1,9 @@
 #!/bin/bash
 
-./strip-image -i iss2022/g42-web_i -t iss2022/g42-web_i_stripped:3 -t iss2022/g42-web_i_stripped:latest  \
+./strip-image -i iss2022/g42-web_i \
+	-t iss2022/g42-web_i_stripped:3 \
+	-t iss2022/g42-web_i_stripped:latest  \
+	-d Dockerfile \
       -p nginx  \
       -f /etc/passwd \
       -f /etc/group \
