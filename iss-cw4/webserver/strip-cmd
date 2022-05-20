@@ -1,9 +1,11 @@
 #!/bin/bash
 
-./strip-image  -v \
-  -i local/chat-server:latest \
-  -p nmap-ncat \
-  -d Dockerfile \
-  -t local/chat-stripped_i \
-  -t local/chat-stripped_i:22.02.v
-
+./strip-image -i nginx -t stripped-nginx  \
+      -p nginx  \
+      -f /etc/passwd \
+      -f /etc/group \
+      -f /lib/*/libnss* \
+      -f /lib64/libc.* \
+      -f /etc/hosts \
+      -f /lib/*/libzip*
+      -f /var/log/nginx
