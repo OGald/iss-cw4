@@ -1,11 +1,11 @@
 #!/bin/bash
 
-./strip-image -i nginx -t stripped-nginx  \
+./strip-image -i iss2022/g42-web_i -t iss2022/g42-web_i_stripped:3 -t iss2022/g42-web_i_stripped:latest  \
       -p nginx  \
       -f /etc/passwd \
       -f /etc/group \
-      -f /lib/*/libnss* \
-      -f /lib64/libc.* \
+      -f '/usr/lib/*/libnss*' \
+      -f /usr/lib64 \
       -f /etc/hosts \
-      -f /lib/*/libzip*
+      -f '/usr/lib/*/libzip*' \
       -f /var/log/nginx
