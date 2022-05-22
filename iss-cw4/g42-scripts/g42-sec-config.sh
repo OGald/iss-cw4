@@ -4,8 +4,8 @@
 # This is done in the /usr/lib/systemd/system/docker.service file
 
 # Run these files in the respective config files once on your machine for selinux
-#sudo make -f /usr/share/selinux/devel/Makefile docker-solomon-web.pp
-#sudo make -f /usr/share/selinux/devel/Makefile docker-solomon-db.pp
+#sudo make -f /usr/share/selinux/devel/Makefile docker-g42-web.pp
+#sudo make -f /usr/share/selinux/devel/Makefile docker-g42-db.pp
 
-sudo semodule -i ../dbserver/configfiles/docker-solomon-web.pp
-sudo semodule -i ../webserver/configfiles/docker-solomon-db.pp
+sudo semodule -i ../dbserver/configFiles/docker-g42-web.pp
+sudo semodule -i ../webserver/configFiles/docker-g42-db.pp
