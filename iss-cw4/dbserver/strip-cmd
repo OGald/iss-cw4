@@ -1,7 +1,8 @@
 #!/bin/bash
 
-./strip-image -i iss2022/g42-db_i:latest \
+./strip-image -v -i iss2022/g42-db_i:latest \
 	-t iss2022/g42-db_i_stripped:latest \
 	-t iss2022/g42-db_i:1  \
-     	-p nginx  \
+     	-p mysql  \
+        -f '/usr/lib64/libc.so*' \
       	-d Dockerfile

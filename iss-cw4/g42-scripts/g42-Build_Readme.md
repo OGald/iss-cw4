@@ -11,4 +11,4 @@ docker build --tag iss2022/g42-web_i .
 
 _i = Image
 _c = Container
-_n = networ
+_n = network

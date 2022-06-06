@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ./strip-image -v -i iss2022/g42-web_i \
-	-t iss2022/g42-web_i_stripped:15 \
+	-t iss2022/g42-web_i_stripped:16 \
 	-t iss2022/g42-web_i_stripped:latest  \
 	-d Dockerfile \
       -p nginx  \
