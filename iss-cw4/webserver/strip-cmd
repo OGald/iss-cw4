@@ -1,6 +1,9 @@
 #!/bin/bash
 
-./strip-image -i iss2022/g42-web_i -t iss2022/g42-web_i_stripped:3 -t iss2022/g42-web_i_stripped:latest  \
+./strip-image -v -i iss2022/g42-web_i \
+	-t iss2022/g42-web_i_stripped:16 \
+	-t iss2022/g42-web_i_stripped:latest  \
+	-d Dockerfile \
       -p nginx  \
       -f /etc/passwd \
       -f /etc/group \
@@ -8,4 +11,17 @@
       -f /usr/lib64 \
       -f /etc/hosts \
       -f '/usr/lib/*/libzip*' \
-      -f /var/log/nginx
+      -f /var/log/nginx \
+      -f /bin/bash \
+      -f /bin/sh \
+      -f '/var/lib/nginx/*' \
+      -f /usr/sbin/php-fpm \
+      -f /etc/php-fpm.conf \
+      -f '/etc/php-fpm.d/*.conf' \
+      -f /var/log/php-fpm/error.log \
+      -f /var/run \
+      -f /etc/nginx/nginx.conf \
+      -f '/*/php.ini*' \
+      -f '/*/www.conf*' \
+      -f /bin/mkdir \
+      -f /docker-entrypoint.sh
