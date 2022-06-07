@@ -1,0 +1,39 @@
+NETWORK
+
+Create network:
+docker network create --subnet=192.0.2.0/24 iss2022/g42_n
+
+
+DATABASE
+Build dbserver image:
+
+
+Run database image on network:
+docker run -d --net iss2022/g42_n --ip 192.0.2.201 --hostname db.cyber2022.test -e MYSQL_ROOT_PASSWORD="CorrectHorseBatteryStaple" -e MYSQL_DATABASE="iss2022db" --name iss2022_g42-db_c iss2022/g42-db_i:0
+
+
+Configure dbserver with data:
+docker exec -i iss2022_g42-db_c mysql -uroot -pCorrectHorseBatteryStaple < sqlconfig/iss2022db.sql
+
+
+WEBSERVER
+Build webserver image:
+docker build --tag iss2022/g42-web_i:latest
+
+Run webserver on network:
+docker run -d --net iss2022/g42_n --ip 192.0.2.202 --hostname www.cyber2022.test --add-host db.cyber2022.test:192.0.2.201 -p 90:90 --name iss2022_g42-web_c iss2022/g42-web_i:0
+
+
+
+
+PETER SECCOMP NOTES FROM LECTURE:
+
+    1) get seccomp policy with mim syscalls in it
+
+    2) get container to strace itself
+
+    3) strace from the host into the container (docker inspect -f '{​{​,State.Pid}​}​' <container-name> )the strace -p pid from above
+
+    4) build container to strace pid 1 and start in same namespace as the container 
+
+    5) experiment with permissive logging policy
