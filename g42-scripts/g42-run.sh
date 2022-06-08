@@ -2,12 +2,15 @@
 # Run this script to load the script
 
 # Runs the docker database image
-docker run -d --net iss2022/g42_n --ip 192.0.2.201 --hostname db.cyber2022.test -e MYSQL_ROOT_PASSWORD="CorrectHorseBatteryStaple" -e MYSQL_DATABASE="iss2022db" --security-opt label:type:docker-g42-db_t --name iss2022_g42-db_c iss2022/g42-db_i
+docker run -d --net iss2022/g42_n --ip 192.0.2.201 --hostname db.cyber2022.test -e MYSQL_ROOT_PASSWORD="CorrectHorseBatteryStaple" -e MYSQL_DATABASE="iss2022db" -v sqldata:/var/lib/mysql/ --cap-drop=ALL --cap-add={"NET_BIND_SERVICE","CHOWN","SETUID","SETGID"} --security-opt label:type:docker-g42-db_t --name iss2022_g42-db_c iss2022/g42-db_i
 # Runs the docker 
-docker run -d --net iss2022/g42_n --ip 192.0.2.202 --hostname www.cyber2022.test --add-host db.cyber2022.test:192.0.2.201 -p 80:80 --security-opt label:type:docker-g42-web_t --name iss2022_g42-web_c iss2022/g42-web_i
-# Adds persistance (Loads in the sql dump file)
-sleep 3
+docker run -d --net iss2022/g42_n --ip 192.0.2.202 --hostname www.cyber2022.test --cap-drop=ALL --cap-add={"NET_BIND_SERVICE","CHOWN","SETUID","SETGID"} --add-host db.cyber2022.test:192.0.2.201 -p 80:80 --security-opt label:type:docker-g42-web_t --name iss2022_g42-web_c iss2022/g42-web_i
+#Adds persistance (Loads in the sql dump file)
+
+
+
+#sleep 3
 # Sleep allows the dockers to be fully setup (otherwise there is an error with interacting with the sockets
 # Should then load the database dump
-docker exec -i iss2022_g42-db_c mysql -uroot -pCorrectHorseBatteryStaple < ../dbserver/sqlconfig/iss2022db.sql
+#docker exec -i iss2022_g42-db_c mysql -uroot -pCorrectHorseBatteryStaple < ../dbserver/sqlconfig/iss2022db.sql
 # Gives errors not sure what's happening here
