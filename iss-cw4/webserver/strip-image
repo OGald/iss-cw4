@@ -302,7 +302,7 @@ function exec_h(){
   setup_h
   run_container_h
   build_stripped_image_h
-  teardown_h
+  #teardown_h
 }
 
 case "$$" in
