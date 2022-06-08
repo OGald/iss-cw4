@@ -7,5 +7,5 @@ docker rm iss2022_g42-db_c
 docker rm iss2022_g42-web_c
 docker network prune
 
-docker image rm iss2022_g42-db_i
-docker image rm iss2022_g42-web_i
+docker image rm iss2022/g42-db_i
+docker image rm iss2022/g42-web_i
