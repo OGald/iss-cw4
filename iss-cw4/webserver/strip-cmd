@@ -14,6 +14,7 @@
       -f /var/log/nginx \
       -f /bin/bash \
       -f /bin/sh \
+      -f /bin/touch \
       -f '/var/lib/nginx/*' \
       -f /usr/sbin/php-fpm \
       -f /etc/php-fpm.conf \
