@@ -16,7 +16,7 @@ require {
 #============= docker-g42-db_t==============
 allow docker-g42-db_t mysqld_port_t:tcp_socket name_bind;
 allow docker-g42-db_t node_t:tcp_socket node_bind;
-allow docker-g42-db_t self:capability { net_bind_service setgid setuid };
+allow docker-g42-db_t self:capability { chown net_bind_service setgid setuid };
 allow docker-g42-db_t self:tcp_socket { bind create listen setopt accept connect getattr getopt read write };
 #=============> Security Configuration <=============
 # These steps detail the one off actions needed to setup selinux in docker (Taken from docker_chat)
