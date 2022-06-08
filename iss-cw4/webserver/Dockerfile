@@ -24,6 +24,8 @@ RUN rm -f /usr/share/nginx/html/index.html /usr/share/nginx/html/nginx-logo.png 
 RUN chmod +x /docker-entrypoint.sh && \
     chown apache:apache /usr/share/nginx/html/*.php
 
+RUN touch /var/log/php-fpm/error.log
+
 EXPOSE 80
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
