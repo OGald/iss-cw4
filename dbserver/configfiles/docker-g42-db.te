@@ -1,3 +1,10 @@
+# Development of the te files was taken from in-class demostrations:
+# Most notably the "docker_chat.te" file which provided a good basis and guide on how to create and implement SELINUX policy files
+# With combination of docker_chat.te  and https://www.elephdev.com/cDocker/309.html selinux implementation was relevatively smooth.
+Other material was used and is linked here:
+#  https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/chap-security-enhanced_linux-introduction (Redhat linux Intro to selinux)
+#  
+# 
 policy_module(docker-g42-db,0.1)
 virt_sandbox_domain_template(docker-g42-db);
 require {
@@ -11,3 +18,30 @@ allow docker-g42-db_t mysqld_port_t:tcp_socket name_bind;
 allow docker-g42-db_t node_t:tcp_socket node_bind;
 allow docker-g42-db_t self:capability { net_bind_service setgid setuid };
 allow docker-g42-db_t self:tcp_socket { bind create listen setopt accept connect getattr getopt read write };
+#=============> Security Configuration <=============
+# These steps detail the one off actions needed to setup selinux in docker (Taken from docker_chat)
+# Modify the line /usr/lib/systemd/system/docker.service to include /usr/bin/dockerd --selinux-enabled
+# Restart the services so that this change takes place:
+#     sudo systemctl daemon-reload
+#     systemctl restart docker
+#Check if the changes took effect:
+#     docker info | grep -A5 Security
+#     systemctl status docker
+#=============> SELinux Policy Development <=============
+# Use this file to create the pp files (the loadable policy):
+#      sudo make -f /usr/share/selinux/devel/Makefile docker_g42-db.pp
+# Insert the new policy into the kernel:
+#      sudo semodule -i docker_g42-db.pp
+# Confirm it's existence:
+#       sudo semodule -l | grep docker
+#=============> Adding to Docker Development <=============
+# Include the labels in the --security-opt label:
+# example command: (taken from docker_chat)
+# docker run --name chat_c -d --rm -p 127.0.0.1:7777:6666  --security-opt label:type:docker_dbserver-selinux_t local/chat_i:0.2
+# =============> Audit2Allow guide <=============
+# Run the container with permissive (setenforce 0)
+# Check if selinux logs have occured:
+# sudo cat /var/log/audit/audit.log (shows the audit log)
+# use this commands:
+# sudo ausearch -m avc --start recent | audit2allow -r
+# Generates a policy file for this being allowed.
