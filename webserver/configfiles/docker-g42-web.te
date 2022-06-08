@@ -1,7 +1,7 @@
 # Development of the te files was taken from in-class demostrations:
 # Most notably the "docker_chat.te" file which provided a good basis and guide on how to create and implement SELINUX policy files
 # With combination of docker_chat.te  and https://www.elephdev.com/cDocker/309.html selinux implementation was relevatively smooth.
-Other material was used and is linked here:
+# Other material was used and is linked here:
 #  https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/chap-security-enhanced_linux-introduction (Redhat linux Intro to selinux)
 #  
 # 
